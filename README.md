@@ -63,11 +63,22 @@ developing your own process.
 - Add a new toy when the toy form is submitted
 
   - How I debugged:
+  1. On seeing this error; "500 (Internal Server Error) in my frontend console, I began my debug process in the server logs.
+  2. The headsup in the server logs console, led me to the Toys controller file
+  3. Realized that there was a name error. "Toy" instead of "Toys. 
 
 - Update the number of likes for a toy
 
   - How I debugged:
+  1. After looking at the error in my frontend's console, I also took a loot at my server logs console.
+  2. The error showed "unpermitted parameter :id"
+  3. So, I checked the controller, I added the id to the permit, the error persisted on the frontend but dissapeared on the backend. 
+  4. Then I realized that render json was missing. I added that. The frontend console error stopped. 
+  5. I deleted the :id which was added to the .permit, and it still worked. 
 
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+  1. I checked the Network Tab on the frontend, it showed "DELETE 404 (Not Found)"
+  2. Afterwards, I checked the Rails Server logs in the backend, it showed "(No route matches [DELETE] "/toys/1")"
+  3. So, I went to routes.rb, and added THE the :delete route to handle the DELETE request
